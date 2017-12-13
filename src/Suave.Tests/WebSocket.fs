@@ -244,7 +244,7 @@ let websocketTests cfg =
         Expect.isTrue (testByteArray (int PayloadSize.Bit32) echo.Value) "Should be echoed"
       
       #if NETCOREAPP2_0
-      ptestCase "echo large number of messages to client" <| fun _ -> ()
+      testCase "echo large number of messages to client" <| fun _ -> ()
       #else      
       testCase websocketUrl subprotocols "echo large number of messages to client" <| fun mre clientWebSocket ->
         let amountOfMessages = 1000

@@ -242,7 +242,7 @@ let websocketTests cfg =
         mre.WaitOne() |> ignore
         clientWebSocket.Close()
         Expect.isTrue (testByteArray (int PayloadSize.Bit32) echo.Value) "Should be echoed"
-      
+
       testCase websocketUrl subprotocols "echo large number of messages to client" <| fun mre clientWebSocket ->
         let amountOfMessages = 1000
         let echo = ref []

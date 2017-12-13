@@ -242,7 +242,7 @@ desc 'create suave nuget with .NET Core'
 task :nugets_with_netcore => [:nugets, 'dotnetcli:do_netcorepackage', 'dotnetcli:merge']
 
 desc 'compile, gen versions and test'
-task :ci => [:'dotnetcli:unit']
+task :ci => [:compile, :'tests:unit', :'dotnetcli:unit']
 
 desc 'compile, gen versions, test'
 task :default => [:compile, :'tests:unit', :'docs:build']

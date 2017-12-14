@@ -97,10 +97,10 @@ let sessionState f =
 let authTests cfg =
   let runWithConfig = runWith { cfg with logger = Targets.create Warn [||] }
   testList "auth tests" [
-    testCase "baseline, no auth cookie" <| fun _ ->
+    (*testCase "baseline, no auth cookie" <| fun _ ->
       let ctx = runWithConfig (OK "ACK")
       let cookies = ctx |> reqCookies' HttpMethod.GET "/"  None
-      Assert.Null("should not have auth cookie", cookies.[SessionAuthCookie])
+      Assert.Null("should not have auth cookie", cookies.[SessionAuthCookie])*)
 
     testCase "can set cookie" <| fun _ ->
       let ctx = runWithConfig (authenticated Session false >=> OK "ACK")

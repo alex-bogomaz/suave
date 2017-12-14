@@ -84,7 +84,7 @@ let private aFewTimes f =
   let s ms = System.Threading.Thread.Sleep (ms : int)
   let rec run = function
     | 0us | 1us -> f ()
-    | n -> try f () with e -> s 10; run (n - 1us)
+    | n -> try f () with e -> Console.WriteLine("!!!! AAAAAAAA " + e.ToString()); run (n - 1us)
   run 3us
 
 // consider:

@@ -23,6 +23,9 @@ let main args =
         bindings = [ HttpBinding.createSimple HTTP "127.0.0.1" 9001 ]
         logger   = Targets.create Warn [| "Suave"; "Tests" |] }
 
+
+  printfn "%A" args
+
   Console.WriteLine "Running tests with default TCP engine."
   let firstRun = defaultMainThisAssemblyWithParam testConfig args
   Console.WriteLine "Done."

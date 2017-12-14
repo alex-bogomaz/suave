@@ -20,7 +20,7 @@ let main args =
 
   let testConfig =
     { defaultConfig with
-        bindings = [ HttpBinding.createSimple HTTP "127.0.0.1" 9001 ]
+        bindings = [ HttpBinding.createSimple HTTP "[::1]" 9001 ]
         logger   = Targets.create Warn [| "Suave"; "Tests" |] }
 
 
@@ -30,11 +30,11 @@ let main args =
   let firstRun = defaultMainThisAssemblyWithParam testConfig args
   Console.WriteLine "Done."
 
-  if firstRun <> 0 then
-    firstRun
-  else
-    Console.WriteLine "Running tests with LibUv TCP engine."
-    let libUvConfig = { testConfig with tcpServerFactory = LibUvServerFactory() }
-    let r = defaultMainThisAssemblyWithParam libUvConfig args
-    Console.WriteLine "Done."
-    r
+  //if firstRun <> 0 then
+  //  firstRun
+  //else
+  Console.WriteLine "Running tests with LibUv TCP engine."
+  let libUvConfig = { testConfig with tcpServerFactory = LibUvServerFactory() }
+  let r = defaultMainThisAssemblyWithParam libUvConfig args
+  Console.WriteLine "Done."
+  r

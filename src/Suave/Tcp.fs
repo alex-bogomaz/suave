@@ -145,7 +145,10 @@ let runServer maxConcurrentOps bufferSize autoGrow (binding: SocketBinding) star
     let transportPool, bufferManager =
       createPools listenSocket logger maxConcurrentOps bufferSize autoGrow
 
-    aFewTimes (fun () -> listenSocket.Bind binding.endpoint)
+    aFewTimes (fun () -> 
+      listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, 1)
+      listenSocket.Bind binding.endpoint)
+    
     listenSocket.Listen MaxBacklog
 
     use! disposable = Async.OnCancel(fun () ->

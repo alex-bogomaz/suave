@@ -21,7 +21,7 @@ let main args =
   let testConfig =
     { defaultConfig with
         bindings = [ HttpBinding.createSimple HTTP "127.0.0.1" 9001 ]
-        logger   = Targets.create Warn [| "Suave"; "Tests" |] }
+        logger   = Targets.create Verbose [| "Suave"; "Tests" |] }
 
 
   printfn "%A" args

@@ -3,7 +3,6 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>Suave.Tests</AssemblyName>
     <OutputType>Exe</OutputType>
-    <RuntimeIdentifiers>linux-x64</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="large_xml.xml" />

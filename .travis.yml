@@ -8,7 +8,7 @@ os:
 dist: trusty
 sudo: required
 
-dotnet: 1.0.4
+dotnet: 2.0.0
 
 mono:
  - 4.8.0

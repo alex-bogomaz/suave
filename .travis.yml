@@ -23,7 +23,7 @@ install:
  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y gnupg automake libtool ; fi
  - curl -sSL https://github.com/libuv/libuv/archive/v1.9.1.tar.gz | tar zxf - -C /tmp
  - (cd /tmp/libuv-1.9.1/ && ./autogen.sh && ./configure && make && sudo make install)
- - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo ldconfig ; fi
+ #- sudo ldconfig
  # for apache bench (ab)
  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo apt-get install -qq apache2-utils ; fi
 

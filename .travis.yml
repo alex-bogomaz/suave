@@ -1,6 +1,10 @@
 ---
 language: csharp
 
+os:
+  - linux
+  - osx
+
 dist: trusty
 sudo: required
 

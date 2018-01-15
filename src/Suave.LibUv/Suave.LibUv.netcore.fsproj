@@ -13,6 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Suave\Suave.netcore.fsproj" PrivateAssets="All" />
+    <PackageReference Include="FSharp.Core" Version="4.1.18" />
     <PackageReference Include="Libuv" Version="1.10.0" />
   </ItemGroup>
 </Project>

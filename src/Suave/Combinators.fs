@@ -660,7 +660,12 @@ module Embedded =
 
   let resources (assembly : Assembly) =
     System.Console.WriteLine("AAAAAAAAAAAAAAA" + " resources")
-    assembly.GetManifestResourceNames()
+    try
+      assembly.GetManifestResourceNames()
+    with
+      | ee -> 
+        System.Console.WriteLine("AAAAAAAAAAAAAAA" + ee.ToString())
+        reraise()
 
   let lastModified (assembly : Assembly) =
     System.Console.WriteLine("AAAAAAAAAAAAAAA" + " lastModified")

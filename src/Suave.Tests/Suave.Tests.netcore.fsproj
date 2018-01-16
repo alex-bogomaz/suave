@@ -24,8 +24,7 @@
     <Compile Include="HttpWriters.fs" />
     <Compile Include="HttpFile.fs" />
 
-    <!-- No browseDefaultAsssembly for netstandard 1.6 -->
-    <!-- Compile Include="HttpEmbedded.fs" /--> 
+    <Compile Include="HttpEmbedded.fs" /> 
 
     <Compile Include="HttpVerbs.fs" />
     <Compile Include="HttpApplicatives.fs" />

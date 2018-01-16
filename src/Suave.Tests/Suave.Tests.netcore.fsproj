@@ -18,15 +18,15 @@
     </Content>
     <Compile Include="Smoke.fs" />
     <Compile Include="Utils.fs" />
-    <Compile Include="Pools.fs" />
+    <!--Compile Include="Pools.fs" />
     <Compile Include="AsyncSocket.fs" />
     <Compile Include="Web.fs" />
     <Compile Include="HttpWriters.fs" />
-    <Compile Include="HttpFile.fs" />
+    <Compile Include="HttpFile.fs" /-->
 
-    <Compile Include="HttpEmbedded.fs" /> 
+    <!--Compile Include="HttpEmbedded.fs" /--> 
 
-    <Compile Include="HttpVerbs.fs" />
+    <!--Compile Include="HttpVerbs.fs" />
     <Compile Include="HttpApplicatives.fs" />
     <Compile Include="HttpAuthentication.fs" />
     <Compile Include="CORS.fs" />
@@ -36,20 +36,20 @@
     <Compile Include="Connection.fs" />
     <Compile Include="Sscanf.fs" />
     <Compile Include="Json.fs" />
-    <Compile Include="Owin.fs" />
-    <Compile Include="Auth.fs" />
-    <Compile Include="LogLevel.fs" />
+    <Compile Include="Owin.fs" /-->
+    <!--Compile Include="Auth.fs" /-->
+    <!--Compile Include="LogLevel.fs" />
     <Compile Include="TraceHeader.fs" />
     <Compile Include="Logger.fs" />
     <Compile Include="Cookie.fs" />
     <Compile Include="Types.fs" />
-    <Compile Include="WebSocket.fs" />
+    <Compile Include="WebSocket.fs" /-->
 
     <!-- No RazorEngine for netcore -->
     <!-- Compile Include="Razor.fs" /-->
 
-    <Compile Include="DotLiquid.fs" />
-    <Compile Include="ServerKey.fs" />
+    <!--Compile Include="DotLiquid.fs" />
+    <Compile Include="ServerKey.fs" /-->
     <Compile Include="ExpectoExtensions.fs" />
     <Compile Include="Program.fs" />
     <None Include="paket.references" />

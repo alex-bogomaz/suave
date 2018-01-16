@@ -10,7 +10,7 @@ mono:
  - 5.4.0
  - 5.4.1
  - latest # => "stable release"
- - weekly # => "latest commits"
+ #- weekly # => "latest commits"
 
 install:
  - rvm install 2.2.3
@@ -21,7 +21,8 @@ install:
  - (cd /tmp/libuv-1.9.1/ && ./autogen.sh && ./configure && make && sudo make install)
  - sudo ldconfig
  # for apache bench (ab)
- - sudo apt-get install -qq apache2-utils
+ #- sudo apt-get install -qq apache2-utils
+ - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -qq apache2-utils; fi
 
 script:
  - bundle && bundle exec rake ci

@@ -18,11 +18,11 @@
     </Content>
     <Compile Include="Smoke.fs" />
     <Compile Include="Utils.fs" />
-    <Compile Include="Pools.fs" />
+    <!--Compile Include="Pools.fs" />
     <Compile Include="AsyncSocket.fs" />
     <Compile Include="Web.fs" />
     <Compile Include="HttpWriters.fs" />
-    <Compile Include="HttpFile.fs" />
+    <Compile Include="HttpFile.fs" /-->
 
     <Compile Include="HttpEmbedded.fs" /> 
 
@@ -48,8 +48,8 @@
     <!-- No RazorEngine for netcore -->
     <!-- Compile Include="Razor.fs" /-->
 
-    <Compile Include="DotLiquid.fs" />
-    <Compile Include="ServerKey.fs" />
+    <!--Compile Include="DotLiquid.fs" />
+    <Compile Include="ServerKey.fs" /-->
     <Compile Include="ExpectoExtensions.fs" />
     <Compile Include="Program.fs" />
     <None Include="paket.references" />

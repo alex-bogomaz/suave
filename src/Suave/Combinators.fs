@@ -659,15 +659,18 @@ module Embedded =
     else Assembly.GetEntryAssembly()
 
   let resources (assembly : Assembly) =
+    System.Console.WriteLine("AAAAAAAAAAAAAAA" + " resources")
     assembly.GetManifestResourceNames()
 
   let lastModified (assembly : Assembly) =
+    System.Console.WriteLine("AAAAAAAAAAAAAAA" + " lastModified")
     FileInfo(assembly.Location).CreationTime
 
   let sendResource (assembly : Assembly)
                     resourceName
                     (compression : bool)
                     (ctx : HttpContext) =
+    System.Console.WriteLine("AAAAAAAAAAAAAAA" + " sendResource")
     let writeResource name (conn, _) = socket {
       let fs = assembly.GetManifestResourceStream(name)
       let getLm = fun _ -> lastModified assembly
@@ -698,9 +701,11 @@ module Embedded =
     |> succeed
 
   let sendResourceFromDefaultAssembly resourceName compression =
+    System.Console.WriteLine("AAAAAAAAAAAAAAA" + " sendResourceFromDefaultAssembly ")
     sendResource defaultSourceAssembly resourceName compression
 
   let resource assembly name =
+    System.Console.WriteLine("AAAAAAAAAAAAAAA" + " resource")
     resource
       name
       (fun name -> resources assembly |> Array.exists ((=) name))
@@ -709,9 +714,11 @@ module Embedded =
       (sendResource assembly)
 
   let resourceFromDefaultAssembly name =
+    System.Console.WriteLine("AAAAAAAAAAAAAAA" + " resourceFromDefaultAssembly")
     resource defaultSourceAssembly name
 
   let browse assembly =
+    System.Console.WriteLine("AAAAAAAAAAAAAAA" + " browse")
     warbler (fun ctx -> resource assembly (ctx.request.path.TrimStart [|'/'|]))
 
   let browseDefaultAsssembly =

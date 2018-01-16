@@ -661,7 +661,9 @@ module Embedded =
   let resources (assembly : Assembly) =
     System.Console.WriteLine("AAAAAAAAAAAAAAA" + " resources")
     try
-      assembly.GetManifestResourceNames()
+      let x = assembly.GetManifestResourceNames()
+      Array.iter (fun (z: string) -> System.Console.WriteLine(z)) x
+      x
     with
       | ee -> 
         System.Console.WriteLine("AAAAAAAAAAAAAAA" + ee.ToString())

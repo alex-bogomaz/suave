@@ -17,7 +17,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="Smoke.fs" />
-    <Compile Include="Utils.fs" />
+    <!--Compile Include="Utils.fs" /-->
     <!--Compile Include="Pools.fs" />
     <Compile Include="AsyncSocket.fs" />
     <Compile Include="Web.fs" />

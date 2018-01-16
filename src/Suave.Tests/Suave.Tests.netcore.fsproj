@@ -26,7 +26,7 @@
 
     <Compile Include="HttpEmbedded.fs" /> 
 
-    <Compile Include="HttpVerbs.fs" />
+    <!--Compile Include="HttpVerbs.fs" />
     <Compile Include="HttpApplicatives.fs" />
     <Compile Include="HttpAuthentication.fs" />
     <Compile Include="CORS.fs" />
@@ -43,7 +43,7 @@
     <Compile Include="Logger.fs" />
     <Compile Include="Cookie.fs" />
     <Compile Include="Types.fs" />
-    <Compile Include="WebSocket.fs" />
+    <Compile Include="WebSocket.fs" /-->
 
     <!-- No RazorEngine for netcore -->
     <!-- Compile Include="Razor.fs" /-->

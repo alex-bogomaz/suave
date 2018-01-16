@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>Suave.Tests</AssemblyName>
+    <UseStandardResourceNames>false</UseStandardResourceNames>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
@@ -59,7 +60,9 @@
     <None Include="test-text-file.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="embedded-resource.txt" />
+    <EmbeddedResource Include="embedded-resource.txt">
+        <LagicalName>LogicalName.xml</LagicalName>
+    </EmbeddedResource>
     <Content Include="request.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

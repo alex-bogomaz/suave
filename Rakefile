@@ -203,7 +203,7 @@ namespace :dotnetcli do
   task :stress => [:build_lib, :stress_quick]
 
   task :unit_quick do
-    system dotnet_exe_path, %W|run --project src/Suave.Tests/Suave.Tests.netcore.fsproj -- --sequenced|
+    system dotnet_exe_path, %W|run --project src/Suave.Tests/Suave.Tests.netcore.fsproj -- --sequenced --debug|
   end
 
   desc 'run unit tests on .NET Core 2.0'

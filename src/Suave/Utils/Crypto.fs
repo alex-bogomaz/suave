@@ -84,11 +84,11 @@ type SecretboxDecryptionError =
   | AlteredOrCorruptMessage of string
 
 let private secretboxInit key iv =
-#if NETSTANDARD2_0
-  let aes = Aes.Create()
-#else
+//#if NETSTANDARD2_0
+//  let aes = Aes.Create()
+//#else
   let aes = new AesManaged()
-#endif
+//#endif
   aes.KeySize   <- int KeySize
   aes.BlockSize <- int BlockSize
   aes.Mode      <- CipherMode.CBC

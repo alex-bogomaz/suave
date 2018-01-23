@@ -25,7 +25,7 @@ install:
 
 
 before_script:
- - export PATH=$PATH:/home/travis/.nuget/packages/libuv/1.10.0/runtimes/linux-x64/native
+ - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/travis/.nuget/packages/libuv/1.10.0/runtimes/linux-x64/native
 
 script:
  - bundle && bundle exec rake ci

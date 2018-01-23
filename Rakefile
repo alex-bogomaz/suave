@@ -63,9 +63,9 @@ task :libs do
   unless Albacore.windows?
     system "pkg-config --cflags libuv" do |ok, res|
       if !ok
-        raise %{
-  You seem to be missing `libuv`, which needs to be installed. See https://github.com/SuaveIO/suave#libuv-installation
-  }
+        #raise %{
+  #You seem to be missing `libuv`, which needs to be installed. See https://github.com/SuaveIO/suave#libuv-installation
+  #}
       end
     end
   end

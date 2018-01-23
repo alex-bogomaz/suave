@@ -150,7 +150,7 @@ extern int setsockopt(IntPtr socket, int level, int option_name, IntPtr option_v
 #nowarn "9"
 
 let enableRebinding (listenSocket: Socket) =
-  let mutable optionValue = 1
+  let mutable optionValue = 6
   //let setsockoptStatus = 0 
   //if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then 
   //nativeint

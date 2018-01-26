@@ -1,8 +1,8 @@
 ---
 language: csharp
 
-dist: trusty
-sudo: required
+#dist: trusty
+#sudo: required
 
 dotnet: 2.0.3
 
@@ -16,6 +16,7 @@ install:
  - rvm install 2.2.3
  - gem install bundler
  - sudo apt-get update -y
+
  #- sudo apt-get install -y gnupg automake libtool
  #- curl -sSL https://github.com/libuv/libuv/archive/v1.9.1.tar.gz | tar zxf - -C /tmp
  #- (cd /tmp/libuv-1.9.1/ && ./autogen.sh && ./configure && make && sudo make install)
@@ -35,3 +36,11 @@ matrix:
     - mono: latest
     - mono: weekly
     - mono: 5.0.0
+  include:
+    - os: linux # Ubuntu 14.04
+      dist: trusty
+      sudo: required
+    - os: osx # OSX 10.12
+      osx_image: xcode9.1
+      dist: trusty
+      #sudo: required

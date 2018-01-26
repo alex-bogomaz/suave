@@ -1,7 +1,15 @@
 ---
 language: csharp
 
-#dist: trusty
+os:
+  - linux
+  - osx
+
+mono:
+  - 5.4.0
+  - 5.4.1
+
+dist: trusty
 #sudo: required
 
 dotnet: 2.0.3
@@ -24,19 +32,3 @@ before_script:
 
 script:
  - bundle && bundle exec rake ci
-
-matrix:
-  include:
-    - os: linux # Ubuntu 14.04
-      #dist: trusty
-      sudo: required
-      mono:
-       - 5.4.0
-       - 5.4.1
-    - os: osx # OSX 10.12
-      osx_image: xcode9.1
-      mono:
-       - 5.4.0
-       - 5.4.1
-      #dist: trusty
-      #sudo: required

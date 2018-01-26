@@ -9,8 +9,6 @@ dotnet: 2.0.3
 mono:
  - 5.4.0
  - 5.4.1
- - latest # => "stable release"
- - weekly # => "latest commits"
 
 install:
  - rvm install 2.2.3
@@ -32,10 +30,6 @@ script:
  - bundle && bundle exec rake ci
 
 matrix:
-  allow_failures:
-    - mono: latest
-    - mono: weekly
-    - mono: 5.0.0
   include:
     - os: linux # Ubuntu 14.04
       dist: trusty

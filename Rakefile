@@ -33,7 +33,7 @@ task :restore_paket do
 end
 
 task :paket_restore do
-  system '.paket/paket.exe', %w|restore --verbose|, clr_command: true
+  system '.paket/paket.exe', 'restore', clr_command: true
   system '.paket/paket.exe', %w|restore group Build|, clr_command: true
 end
 
@@ -220,7 +220,7 @@ namespace :tests do
   task :stress => [:compile, :stress_quick]
 
   task :unit_quick do
-    #system "src/Suave.Tests/bin/#{Configuration}/Suave.Tests.exe", %w|--sequenced|, clr_command: true
+    system "src/Suave.Tests/bin/#{Configuration}/Suave.Tests.exe", %w|--sequenced|, clr_command: true
   end
 
   desc 'run unit tests'

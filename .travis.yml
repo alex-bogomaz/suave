@@ -33,18 +33,19 @@ install:
 
 
 before_script:
- - ls ~/
+ - ln -s /Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native/*.dylib* /usr/local/lib
+ #- ls ~/
  #- find "*nuget*" -type d -ls
  #- ls ~/.nuget/packages
  #- if [ "$TRAVIS_OS_NAME" == "linux" ];
  #  then export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.nuget/packages/libuv/1.10.0/runtimes/linux-x64/native;
  #  else export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
  #  fi
- - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
- - export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
+ #- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
+ #- export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
  #- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/travis/.nuget/packages/libuv/1.10.0/runtimes/linux-x64/native
 
 script:
- - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
- - export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
+ #- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
+ #- export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
  - bundle && bundle exec rake ci

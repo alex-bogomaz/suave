@@ -34,7 +34,7 @@ install:
 
 before_script:
  - ls ~/
- - find "*nuget*" -type d -ls
+ #- find "*nuget*" -type d -ls
  #- ls ~/.nuget/packages
  - if [ "$TRAVIS_OS_NAME" == "linux" ];
    then export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.nuget/packages/libuv/1.10.0/runtimes/linux-x64/native;

@@ -35,6 +35,7 @@ end
 task :paket_restore do
   system '.paket/paket.exe', 'restore', clr_command: true
   system '.paket/paket.exe', %w|restore group Build|, clr_command: true
+  system 'ls', '/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native'
 end
 
 desc 'Restore all packages'

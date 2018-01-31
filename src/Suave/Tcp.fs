@@ -162,6 +162,7 @@ let enableRebinding (listenSocket: Socket) =
   if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
     setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_LINUX, SO_REUSEADDR_LINUX, k, uint32(sizeof<int>))
   else if RuntimeInformation.IsOSPlatform(OSPlatform.OSX) then
+    System.Console.WriteLine("!!!!! RuntimeInformation.IsOSPlatform(OSPlatform.OSX)")
     setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_OSX, SO_REUSEADDR_OSX, k, uint32(sizeof<int>))    
 
   if setsockoptStatus <> 0 then

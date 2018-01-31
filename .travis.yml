@@ -33,7 +33,7 @@ install:
 
 
 before_script:
- - ln -s /Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native/*.dylib* /usr/local/lib
+ - ln -s /Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native/libuv.dylib /usr/local/lib/libuv.dylib
  #- ls ~/
  #- find "*nuget*" -type d -ls
  #- ls ~/.nuget/packages

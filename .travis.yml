@@ -8,6 +8,8 @@ os:
 mono:
   - 5.4.0
   - 5.4.1
+  - latest
+  - weekly
 
 dist: trusty
 #sudo: required
@@ -54,3 +56,7 @@ script:
  #- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
  #- export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
  - bundle && bundle exec rake ci
+
+allow_failures:
+  - mono: latest
+  - mono: weekly

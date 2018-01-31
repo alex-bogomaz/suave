@@ -174,9 +174,9 @@ let authTests cfg =
         use res''''' = interact HttpMethod.GET "/protected"
         Expect.equal (contentString res''''') "please authenticate" "should not have access to protected after logout"
 
-    #if NETCOREAPP2_0
-    ptestCase "test session is maintained across requests" <| fun _ -> ()
-    #else
+    //#if NETCOREAPP2_0
+    //testCase "test session is maintained across requests" <| fun _ -> ()
+    //#else
     testCase "test session is maintained across requests" <| fun _ ->
       // given
       let ctx =
@@ -203,11 +203,11 @@ let authTests cfg =
 
         use res'' = interact HttpMethod.GET "/"
         Expect.equal (contentString res'') "2" "should return number two")
-    #endif
+    //#endif
 
-    #if NETCOREAPP2_0
-    ptestCase "set more than one variable in the session" <| fun _ -> ()
-    #else
+    //#if NETCOREAPP2_0
+    //testCase "set more than one variable in the session" <| fun _ -> ()
+    //#else
     testCase "set more than one variable in the session" <| fun _ ->
       // given
       let ctx =
@@ -235,11 +235,11 @@ let authTests cfg =
 
         use res''' = interact HttpMethod.GET "/get_b"
         Expect.equal (contentString res''') "b" "should return b")
-    #endif
+    //#endif
 
-    #if NETCOREAPP2_0
-    ptestCase "set two session values on the same request" <| fun _ -> ()
-    #else
+    //#if NETCOREAPP2_0
+    //testCase "set two session values on the same request" <| fun _ -> ()
+    //#else
     testCase "set two session values on the same request" <| fun _ ->
       // given
       let ctx =
@@ -262,5 +262,5 @@ let authTests cfg =
 
         use res'' = interact HttpMethod.GET "/get_a"
         Expect.equal (contentString res'') "a" "should return a")
-    #endif
+    //#endif
     ]

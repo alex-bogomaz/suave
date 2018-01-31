@@ -159,8 +159,6 @@ let enableRebinding (listenSocket: Socket) =
 
   let mutable setsockoptStatus = 0
 
-  System.Console.WriteLine("!!!!! RuntimeInformation.IsOSPlatform(OSPlatform.OSX)")
-
   if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
     setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_LINUX, SO_REUSEADDR_LINUX, k, uint32(sizeof<int>))
   else if RuntimeInformation.IsOSPlatform(OSPlatform.OSX) then
@@ -178,7 +176,7 @@ let runServer maxConcurrentOps bufferSize autoGrow (binding: SocketBinding) star
   try
     use listenSocket = new Socket(binding.endpoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp)
     #if NETSTANDARD2_0
-      enableRebinding(listenSocket)
+    enableRebinding(listenSocket)
     #endif
     listenSocket.NoDelay <- true
 

@@ -137,6 +137,9 @@ let job (serveClient : TcpWorker<unit>)
 type TcpServer = StartedData -> AsyncResultCell<StartedData> -> TcpWorker<unit> -> Async<unit>
 
 
+#if NETSTANDARD2_0
+#nowarn "9"
+
 open System.Runtime.InteropServices
 
 let SOL_SOCKET_OSX = 0xffff
@@ -147,8 +150,6 @@ let SO_REUSEADDR_LINUX = 0x0002
 [<DllImport("libc", SetLastError = true)>]
 extern int setsockopt(IntPtr socket, int level, int option_name, IntPtr option_value, uint32 option_len)
 
-#nowarn "9"
-
 let enableRebinding (listenSocket: Socket) =
   let mutable optionValue = 1
   //let setsockoptStatus = 0 
@@ -156,10 +157,17 @@ let enableRebinding (listenSocket: Socket) =
   //nativeint
   let k = NativeInterop.NativePtr.toNativeInt<int> &&optionValue
 
-  
-  let setsockoptStatus = setsockopt(listenSocket.Handle, SOL_SOCKET_LINUX, SO_REUSEADDR_LINUX, k, uint32(sizeof<int>))
+  let mutable setsockoptStatus = 0
+
+  if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
+    setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_LINUX, SO_REUSEADDR_LINUX, k, uint32(sizeof<int>))
+  else if RuntimeInformation.IsOSPlatform(OSPlatform.OSX) then
+    setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_OSX, SO_REUSEADDR_OSX, k, uint32(sizeof<int>))    
+
   if setsockoptStatus <> 0 then
     logger.fatal (eventX "setsockopt failed!!!")
+
+#endif
 
 
 let runServer maxConcurrentOps bufferSize autoGrow (binding: SocketBinding) startData

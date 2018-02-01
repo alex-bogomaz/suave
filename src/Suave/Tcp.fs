@@ -136,11 +136,10 @@ let job (serveClient : TcpWorker<unit>)
 
 type TcpServer = StartedData -> AsyncResultCell<StartedData> -> TcpWorker<unit> -> Async<unit>
 
-
 #if NETSTANDARD2_0
 #nowarn "9"
-
 open System.Runtime.InteropServices
+open FSharp.NativeInterop
 
 let SOL_SOCKET_OSX = 0xffff
 let SO_REUSEADDR_OSX = 0x0004
@@ -152,24 +151,22 @@ extern int setsockopt(IntPtr socket, int level, int option_name, IntPtr option_v
 
 let enableRebinding (listenSocket: Socket) =
   let mutable optionValue = 1
-  //let setsockoptStatus = 0 
-  //if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then 
-  //nativeint
-  let k = NativeInterop.NativePtr.toNativeInt<int> &&optionValue
-
   let mutable setsockoptStatus = 0
 
-  if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
-    setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_LINUX, SO_REUSEADDR_LINUX, k, uint32(sizeof<int>))
-  else if RuntimeInformation.IsOSPlatform(OSPlatform.OSX) then
-    System.Console.WriteLine("!!!!! RuntimeInformation.IsOSPlatform(OSPlatform.OSX)")
-    setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_OSX, SO_REUSEADDR_OSX, k, uint32(sizeof<int>))    
+  if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then  
+    setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_LINUX, SO_REUSEADDR_LINUX + 100000, NativePtr.toNativeInt<int> &&optionValue, uint32(sizeof<int>))
+  else if RuntimeInformation.IsOSPlatform(OSPlatform.OSX) then  
+    setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_OSX, SO_REUSEADDR_OSX + 100002, NativePtr.toNativeInt<int> &&optionValue, uint32(sizeof<int>))    
 
   if setsockoptStatus <> 0 then
-    logger.fatal (eventX "setsockopt failed!!!")
+    //_trace.LogInformation("Setting SO_REUSEADDR failed with errno '{errno}'.", Marshal.GetLastWin32Error());
+    //logger.warn (eventX "Setting SO_REUSEADDR failed with errno " + Marshal.GetLastWin32Error().ToString())
+    Console.WriteLine("!!!!!!!!!!!! Errno: " + Marshal.GetLastWin32Error().ToString())
+    logger.warn(
+          eventX "Setting SO_REUSEADDR failed with errno '{errno}'."
+          >> setFieldValue "errno" (Marshal.GetLastWin32Error()))
 
 #endif
-
 
 let runServer maxConcurrentOps bufferSize autoGrow (binding: SocketBinding) startData
               (acceptingConnections: AsyncResultCell<StartedData>) serveClient = async {

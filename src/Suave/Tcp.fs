@@ -162,9 +162,10 @@ let enableRebinding (listenSocket: Socket) =
     //_trace.LogInformation("Setting SO_REUSEADDR failed with errno '{errno}'.", Marshal.GetLastWin32Error());
     //logger.warn (eventX "Setting SO_REUSEADDR failed with errno " + Marshal.GetLastWin32Error().ToString())
     Console.WriteLine("!!!!!!!!!!!! Errno: " + Marshal.GetLastWin32Error().ToString())
+    let e1 = Marshal.GetLastWin32Error()
     logger.warn(
           eventX "Setting SO_REUSEADDR failed with errno '{errno}'."
-          >> setFieldValue "errno" (Marshal.GetLastWin32Error()))
+          >> setFieldValue "errno" e1)
 
 #endif
 

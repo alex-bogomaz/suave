@@ -1,3 +1,4 @@
+module internal Suave.Native
 
 open System
 open System.Runtime.InteropServices

@@ -159,14 +159,10 @@ let enableRebinding (listenSocket: Socket) =
     setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_OSX, SO_REUSEADDR_OSX + 100002, NativePtr.toNativeInt<int> &&optionValue, uint32(sizeof<int>))    
 
   if setsockoptStatus <> 0 then
-    //_trace.LogInformation("Setting SO_REUSEADDR failed with errno '{errno}'.", Marshal.GetLastWin32Error());
-    //logger.warn (eventX "Setting SO_REUSEADDR failed with errno " + Marshal.GetLastWin32Error().ToString())
-    //Console.WriteLine("!!!!!!!!!!!! Errno: " + Marshal.GetLastWin32Error().ToString())
     let e1 = Marshal.GetLastWin32Error()
     logger.warn(
-          eventX "!!!Setting SO_REUSEADDR failed with errno '{errno}'."
-          >> setFieldValue "errno" e1)
-
+          eventX "Setting SO_REUSEADDR failed with errno '{errno}'."
+          >> setFieldValue Marshal.GetLastWin32Error())
 #endif
 
 let runServer maxConcurrentOps bufferSize autoGrow (binding: SocketBinding) startData

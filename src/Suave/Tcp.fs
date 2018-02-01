@@ -154,15 +154,14 @@ let enableRebinding (listenSocket: Socket) =
   let mutable setsockoptStatus = 0
 
   if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then  
-    setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_LINUX, SO_REUSEADDR_LINUX + 100000, NativePtr.toNativeInt<int> &&optionValue, uint32(sizeof<int>))
+    setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_LINUX, SO_REUSEADDR_LINUX, NativePtr.toNativeInt<int> &&optionValue, uint32(sizeof<int>))
   else if RuntimeInformation.IsOSPlatform(OSPlatform.OSX) then  
-    setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_OSX, SO_REUSEADDR_OSX + 100002, NativePtr.toNativeInt<int> &&optionValue, uint32(sizeof<int>))    
+    setsockoptStatus <- setsockopt(listenSocket.Handle, SOL_SOCKET_OSX, SO_REUSEADDR_OSX, NativePtr.toNativeInt<int> &&optionValue, uint32(sizeof<int>))    
 
   if setsockoptStatus <> 0 then
     logger.warn(
           eventX "Setting SO_REUSEADDR failed with errno '{errno}'."
           >> setFieldValue "errno" (Marshal.GetLastWin32Error()))
-
 #endif
 
 let runServer maxConcurrentOps bufferSize autoGrow (binding: SocketBinding) startData

@@ -10,6 +10,14 @@ open Suave.Logging.Message
 open Suave.Sockets
 open Suave.Utils
 
+#if NETSTANDARD2_0
+open System.Runtime.InteropServices
+open FSharp.NativeInterop
+
+open Native
+#endif
+
+
 let private logger = Log.create "Suave.Tcp"
 
 /// The max backlog of number of requests
@@ -138,16 +146,6 @@ type TcpServer = StartedData -> AsyncResultCell<StartedData> -> TcpWorker<unit> 
 
 #if NETSTANDARD2_0
 #nowarn "9"
-open System.Runtime.InteropServices
-open FSharp.NativeInterop
-
-let SOL_SOCKET_OSX = 0xffff
-let SO_REUSEADDR_OSX = 0x0004
-let SOL_SOCKET_LINUX = 0x0001
-let SO_REUSEADDR_LINUX = 0x0002
-
-[<DllImport("libc", SetLastError = true)>]
-extern int setsockopt(IntPtr socket, int level, int option_name, IntPtr option_value, uint32 option_len)
 
 let enableRebinding (listenSocket: Socket) =
   let mutable optionValue = 1

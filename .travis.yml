@@ -12,49 +12,24 @@ mono:
   - weekly
 
 dist: trusty
-#sudo: required
 
 dotnet: 2.0.3
 
 install:
  - rvm install 2.2.3
  - gem install bundler
- #- sudo apt-get update -y
-
  - if [ "$TRAVIS_OS_NAME" == "linux" ];
    then sudo apt-get update -y;
    else brew update;
    fi
 
- #- sudo apt-get install -y gnupg automake libtool
- #- curl -sSL https://github.com/libuv/libuv/archive/v1.9.1.tar.gz | tar zxf - -C /tmp
- #- (cd /tmp/libuv-1.9.1/ && ./autogen.sh && ./configure && make && sudo make install)
- #- sudo ldconfig
- # for apache bench (ab)
- # - sudo apt-get install -qq apache2-utils
-
-
 before_script:
  - if [ "$TRAVIS_OS_NAME" == "linux" ];
    then export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.nuget/packages/libuv/1.10.0/runtimes/linux-x64/native;
-   else ln -s /Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native/libuv.dylib /usr/local/lib/libuv.dylib;
+   else ln -s ~/.nuget/packages/libuv/1.10.0/runtimes/osx/native/libuv.dylib /usr/local/lib/libuv.dylib;
    fi
 
- #- ln -s /Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native/libuv.dylib /usr/local/lib/libuv.dylib
- #- ls ~/
- #- find "*nuget*" -type d -ls
- #- ls ~/.nuget/packages
- #- if [ "$TRAVIS_OS_NAME" == "linux" ];
- #  then export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.nuget/packages/libuv/1.10.0/runtimes/linux-x64/native;
- #  else export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
- #  fi
- #- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
- #- export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
- #- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/travis/.nuget/packages/libuv/1.10.0/runtimes/linux-x64/native
-
 script:
- #- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
- #- export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/travis/.nuget/packages/libuv/1.10.0/runtimes/osx/native;
  - bundle && bundle exec rake ci
 
 matrix:
